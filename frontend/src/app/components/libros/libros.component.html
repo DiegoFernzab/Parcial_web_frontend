@@ -1,0 +1,33 @@
+<h2>Libros</h2>
+
+<form (ngSubmit)="crear()">
+  <input [(ngModel)]="nuevo.titulo" name="titulo" placeholder="Título" required>
+  <input [(ngModel)]="nuevo.autor" name="autor" placeholder="Autor" required>
+  <input [(ngModel)]="nuevo.categoria" name="categoria" placeholder="Categoría" required>
+  <select [(ngModel)]="bibliotecaId" name="bibliotecaId">
+    <option value="0" disabled>Seleccionar biblioteca</option>
+    @for (b of bibliotecas; track b.id) {
+      <option [value]="b.id">{{ b.nombre }}</option>
+    }
+  </select>
+  <button type="submit">Agregar</button>
+</form>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th><th>Título</th><th>Autor</th><th>Categoría</th><th></th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (l of libros; track l.id) {
+      <tr>
+        <td>{{ l.id }}</td>
+        <td>{{ l.titulo }}</td>
+        <td>{{ l.autor }}</td>
+        <td>{{ l.categoria }}</td>
+        <td><button (click)="eliminar(l.id!)">Eliminar</button></td>
+      </tr>
+    }
+  </tbody>
+</table>
